@@ -1,51 +1,100 @@
-const cards = document.querySelector(".api")
-
+const cards = document.querySelector(".api");
 
 fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products")
   .then(response => {
     if (!response.ok) {
-      throw new Error('Network response was not ok'); // Xatolikni ushlash
+      throw new Error('Network response was not ok');
     }
-    return response.json(); // JSON formatiga o'tkazish
+    return response.json();
   })
   .then(data => {
-    data.forEach(data => {
-        let card = document.createElement("div");
-        card.classList.add("apiCard")
-        const btn = document.querySelector(".bx-shopping-bag")
-        card.innerHTML = `
-            <div class="flex justify-center">
-                  <img
-                    class="w-[80%]"
-                    src=${data.img}
-                    alt=""
-                  />
-                </div>
-                <div class="p-[15px]">
-                  <h2 class="text-[14px]">${data.title?.slice(0, 60) + "..."}</h2>
-                  <p><i class="bx bxs-star text-[gold]"></i>${data.rate}</p>
-                  <h3>${data.month
-                    ?.toLocaleString("uz-UZ")
-                    .replace(/,/g, " ")} so'm/oyiga</h3>
-                  <div class="flex items-center justify-between">
-                    <h2>${data.price
-                      ?.toLocaleString("uz-UZ")
-                      .replace(/,/g, " ")} so'm</h2>
-                   <!-- Savat tugmasi -->
-                    
-                  </div>
-                  <div class="flex justify-between gap-[10px] py-[10px] ">
-                      <button class="text-white rounded-lg w-[80%] bg-[dodgerblue] ">Купить в один клик</button>
-                      <button class="btn_shop p-[10px] w-[20%] rounded-lg ${data.id} bg-[#00BFAF]"><i class="bx bx-shopping-bag text-2xl text-white"></i></button>
-                    </div>
-                </div>
-            `;
+    data.forEach(item => {
+      let card = document.createElement("div");
+      card.classList.add("apiCard");
+      
+      card.innerHTML = `
+            <div class="relative w-[100%] flex flex-col justify-between">
+                      <div class="flex justify-center">
+          <img
+            class="w-[100%]"
+            src="${item.img}"
+            alt="${item.title}"
+          />
+        </div>
+        <div class="p-[15px]">
+          <h2 class="text-[14px]">${item.title?.slice(0, 40) + "..."}</h2>
+          <p><i class="bx bxs-star text-[gold]"></i> ${item.rate}</p>
+          <h3>${item.month
+            ?.toLocaleString("uz-UZ")
+            .replace(/,/g, " ")} so'm/oyiga</h3>
+          <div class="flex items-center justify-between">
+            <h2>${item.price
+              ?.toLocaleString("uz-UZ")
+              .replace(/,/g, " ")} so'm</h2>
+          </div>
+          <div class="flex justify-between gap-[10px] py-[10px]">
+            <button class="text-white rounded-lg w-[80%] bg-[dodgerblue]">Купить в один клик</button>
+                <button class="add-to-cart-btn" data-product='${JSON.stringify(item)}'>
+                 Savatchaga qo'shish
+            </button>
+          </div>
+          <!-- Like tugmasi -->
+          <button class="like-btn absolute top-[15px] left-[15px] flex items-center gap-2 mt-2 px-4 py-2 bg-red-500 text-white rounded-lg" data-id="${item.id}">
+            <i class="bx bxs-heart"></i> Like
+          </button>
+          
+        </div>
+            </div>
+      `;
 
-            cards?.append(card);
-        });
-    })
+      cards.append(card);
+    });
 
+    const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+    addToCartButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const product = JSON.parse(button.getAttribute("data-product"));
+        addToCart(product);
+      });
+    });
+
+    const likeButtons = document.querySelectorAll(".like-btn");
+    likeButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const productId = button.getAttribute("data-id");
+        likeProduct(productId, data);
+      });
+    });
+  })
   .catch(error => console.error('Error:', error));
+
+
+  function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProduct = cart.find(item => item.id === product.id);
+  
+    if (existingProduct) {
+      existingProduct.quantity += 1; // Miqdorini oshirish
+    } else {
+      cart.push({ ...product, quantity: 1 }); // Yangi mahsulot qo'shish
+    }
+  
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${product.title} savatchaga qo'shildi!`);
+  }
+function likeProduct(id, data) {
+  const likedProducts = JSON.parse(localStorage.getItem("likedProducts")) || [];
+  
+  const product = data.find(item => item.id == id);
+
+  if (!likedProducts.some(p => p.id == id)) {
+    likedProducts.push(product);
+    localStorage.setItem("likedProducts", JSON.stringify(likedProducts));
+    alert("Mahsulot like qilindi!");
+  } else {
+    alert("Bu mahsulot allaqachon like qilingan!");
+  }
+}
 
   
 
@@ -55,10 +104,8 @@ fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products")
   const adminCards = document.getElementById('adminCards'); // Ma'lumotlar joylashadigan div
   const form = document.querySelector('form'); // Forma
   
-  // Ma'lumotlarni chiqarish
   async function fetchData(id) {
     try {
-      // API-dan ma'lumot olish
       const response = await fetch('https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products');
       const data = await response.json();
       const foundItem = data.find(item => item.id == id); // ID bo'yicha qidirish
@@ -66,7 +113,6 @@ fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products")
       adminCards.innerHTML = ''; // Tozalash
   
       if (foundItem) {
-        // Ma'lumot chiqarish
         adminCards.innerHTML = `
           <div class="flex flex-col justify-center items-center">
               <div class="w-[100%] flex justify-center">
@@ -128,7 +174,6 @@ fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products")
     }
   }
   
-  // O'zgartirish funksiyasi
   async function editItem(id) {
     const newName = prompt('Yangi nom kiriting:');
     const newPrice = prompt('Yangi narx kiriting:');
@@ -153,7 +198,6 @@ fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products")
     }
   }
   
-  // Qo'shish funksiyasi
   async function addItem() {
     const newName = prompt('Nom kiriting:');
     const newPrice = prompt('Narx kiriting:');
