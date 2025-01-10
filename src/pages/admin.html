@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+    <link rel="stylesheet" href="../../dist/css/output.css">
+</head>
+<body>
+    <div class="grid grid-cols-[30%_minmax(70%,_2fr)] w-[95%] m-auto h-[100vh]">
+        <div class="bg-[yellow] p-[20px] px-[40px]">
+            <div class="flex  items-center justify-between">
+                <a href="../index.html"><img src="../../assets/svg/logo.svg" alt="logo"></a>
+                <a href="../index.html"><i class='bx bx-log-out text-[25px]'></i></a>
+            </div>
+
+            <div class="mt-10">
+                <ul class="flex flex-col gap-[30px] text-2xl  ">
+                    <li class="hover:bg-[#c4c421] py-[10px] px-[15px]">
+                        <a href="#"  class="font-bold "> O'zgartirish</a>
+                    </li>
+                    <li class="hover:bg-[#c4c421] py-[10px] px-[15px]">
+                        <a href="#" class="font-bold">O'chirish</a>
+                    </li>
+                    <li class="hover:bg-[#c4c421] py-[10px] px-[15px]">
+                        <a href="#" class="font-bold">Qoshish</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-[crimson] py-10">
+            <form action="" class=" flex flex-col m-auto  w-[30%] py-[30px]">
+                <input type="text" id="inputId" class=" py-[12px] px-[10px] rounded-t-xl" placeholder="id kiriting ">
+                <button class="bg-[dodgerblue] text-white py-[12px] rounded-b-xl">Ok</button>
+            </form>
+            <div class="flex justify-center">
+                <div id="adminCards" class="flex flex-col bg-white">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script type="module" src="../../js/main.js"></script>
+</body>
+</html>

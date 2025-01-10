@@ -1,12 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="../assets/svg/logo.svg" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Asaxiy Market</title>
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../dist/css/output.css">
 </head>
-<body>
+<body class="bg-black">
+
+    <header class="bg-[#FFF] py-[30px] shadow-inner">
+        <div class="nav w-[90%] m-auto flex   justify-between pb-[16px] border-b-2 border-[gray] items-center">
+            <div>
+                <a href="./index.html"><img src="../assets/svg/logo.svg" alt="logo"></a>
+            </div>
+            <button class=" text-white bg-[dodgerblue] flex gap-3 rounded-xl py-[12px] px-[20px] items-center text-bold text-[18px]">
+                <img src="../assets/svg/lines.svg" alt="">
+                Категории
+            </button>
+            <form action="" class=" rounded-xl border-2 w-[30%] items-center flex justify-between pl-[20px] border-[dodgerblue]">
+                <input type="text" placeholder="Поиск..." required class="border-none outline-none w-[70%]" >
+                <button class="bg-[dodgerblue] text-white px-[20px] py-[12px] rounded-r-xl">Искать</button>
+            </form>
+            <div class="flex flex-col items-center text-[20px]">
+                <img src="../assets/svg/sravneniya.svg"       alt="">
+                <p>Сравнение</p>
+            </div>
+            <div class="flex flex-col items-center text-[20px]">
+                <img src="../assets/svg/wallet.svg"      alt="">
+                <p>Оплатить</p>
+            </div>
+            <a href="./pages/admin.html">
+                <div class="flex flex-col items-center text-[20px]">
+                    <img src="../assets/svg/car.svg"     alt="">
+                    <p>Отследить</p>
+                </div>
+            </a>
+            <a href="./pages/cart.html">
+                <div class="flex flex-col items-center text-[20px]">
+                    <img src="../assets/svg/cart.svg"    alt="">
+                    <p>Корзина</p>
+                </div>
+            </a>
+            <div class="flex flex-col items-center text-[20px]">
+                <img src="../assets/svg/heart.svg"       alt="">
+                <p>Избранное</p>
+            </div>
+            <div class="flex flex-col items-center text-[20px]">
+                <img src="../assets/svg/flag.svg"    alt="">
+                <p>O'zbekcha</p>
+            </div>
+            <div class="flex flex-col items-center text-[20px]">
+                <img src="../assets/svg/user.svg"    alt="">
+                <p>Войти</p>
+            </div>
+        </div>
+        <div class="w-[90%] m-auto">
+            <ul class="flex justify-between items-center text-[18px] font-bold mt-4">
+                <li>
+                    <a href="#">Скидки</a>
+                </li>
+                <li>
+                    <a href="#">0-0-6</a>
+                </li>
+                <li>
+                    <a href="#">Смартфоны</a>
+                </li>
+                <li>
+                    <a href="#">Бытовая техника</a>
+                </li>
+                <li>
+                    <a href="#">Книги</a>
+                </li>
+                <li>
+                    <a href="#">Ноутбуки</a>
+                </li>
+                <li>
+                    <a href="#">Ноутбуки</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="bg-[#F4F7FD] pt-[40px]">
+        <section class="first bg-[dodgerblue]  py-[10px] px-[20px] w-[95%] m-auto">
+            <div>
+                   <!--HTML CODE-->
+                <div class="w-full relative">
+                    <div class="swiper multiple-slide-carousel swiper-container relative">
+                    <div class="swiper-wrapper ">
+                    <div class="swiper-slide">
+                        <div class="card p-[20px] bg-white w-full flex flex-col gap-4 items-center rounded-2xl">
+                            <div>
+                                <img src="../assets/images/product1.png" alt="">
+                            </div>
+                            <div class="infos flex flex-col gap-3">
+                                <h3>
+                                    Смартфон Honor X9b 5G
+                                    12/256GB Полночный…
+                                </h3>
+                                <div class="flex justify-between">
+                                    <p class="text-[lightgray]">4 599 000 сум</p>
+                                    <span class="text-[crimson]">9%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-[dodgerblue]">4 599 000 сум</p>
+                                    <span class="text-[dodgerblue]">5</span>
+                                </div>
+                                <button class="py-3 rounded-xl bg-[dodgerblue] text-white">10.01.2025</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card p-[20px] bg-white w-full flex flex-col gap-4 items-center rounded-2xl">
+                            <div>
+                                <img src="../assets/images/product1.png" alt="">
+                            </div>
+                            <div class="infos flex flex-col gap-3">
+                                <h3>
+                                    Смартфон Honor X9b 5G
+                                    12/256GB Полночный…
+                                </h3>
+                                <div class="flex justify-between">
+                                    <p class="text-[lightgray]">4 599 000 сум</p>
+                                    <span class="text-[crimson]">9%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-[dodgerblue]">4 599 000 сум</p>
+                                    <span class="text-[dodgerblue]">5</span>
+                                </div>
+                                <button class="py-3 rounded-xl bg-[dodgerblue] text-white">10.01.2025</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card p-[20px] bg-white w-full flex flex-col gap-4 items-center rounded-2xl">
+                            <div>
+                                <img src="../assets/images/product1.png" alt="">
+                            </div>
+                            <div class="infos flex flex-col gap-3">
+                                <h3>
+                                    Смартфон Honor X9b 5G
+                                    12/256GB Полночный…
+                                </h3>
+                                <div class="flex justify-between">
+                                    <p class="text-[lightgray]">4 599 000 сум</p>
+                                    <span class="text-[crimson]">9%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-[dodgerblue]">4 599 000 сум</p>
+                                    <span class="text-[dodgerblue]">5</span>
+                                </div>
+                                <button class="py-3 rounded-xl bg-[dodgerblue] text-white">10.01.2025</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card p-[20px] bg-white w-full flex flex-col gap-4 items-center rounded-2xl">
+                            <div>
+                                <img src="../assets/images/product1.png" alt="">
+                            </div>
+                            <div class="infos flex flex-col gap-3">
+                                <h3>
+                                    Смартфон Honor X9b 5G
+                                    12/256GB Полночный…
+                                </h3>
+                                <div class="flex justify-between">
+                                    <p class="text-[lightgray]">4 599 000 сум</p>
+                                    <span class="text-[crimson]">9%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-[dodgerblue]">4 599 000 сум</p>
+                                    <span class="text-[dodgerblue]">5</span>
+                                </div>
+                                <button class="py-3 rounded-xl bg-[dodgerblue] text-white">10.01.2025</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card p-[20px] bg-white w-full flex flex-col gap-4 items-center rounded-2xl">
+                            <div>
+                                <img src="../assets/images/product1.png" alt="">
+                            </div>
+                            <div class="infos flex flex-col gap-3">
+                                <h3>
+                                    Смартфон Honor X9b 5G
+                                    12/256GB Полночный…
+                                </h3>
+                                <div class="flex justify-between">
+                                    <p class="text-[lightgray]">4 599 000 сум</p>
+                                    <span class="text-[crimson]">9%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-[dodgerblue]">4 599 000 сум</p>
+                                    <span class="text-[dodgerblue]">5</span>
+                                </div>
+                                <button class="py-3 rounded-xl bg-[dodgerblue] text-white">10.01.2025</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card p-[20px] bg-white w-full flex flex-col gap-4 items-center rounded-2xl">
+                            <div>
+                                <img src="../assets/images/product1.png" alt="">
+                            </div>
+                            <div class="infos flex flex-col gap-3">
+                                <h3>
+                                    Смартфон Honor X9b 5G
+                                    12/256GB Полночный…
+                                </h3>
+                                <div class="flex justify-between">
+                                    <p class="text-[lightgray]">4 599 000 сум</p>
+                                    <span class="text-[crimson]">9%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-[dodgerblue]">4 599 000 сум</p>
+                                    <span class="text-[dodgerblue]">5</span>
+                                </div>
+                                <button class="py-3 rounded-xl bg-[dodgerblue] text-white">10.01.2025</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card p-[20px] bg-white w-full flex flex-col gap-4 items-center rounded-2xl">
+                            <div>
+                                <img src="../assets/images/product1.png" alt="">
+                            </div>
+                            <div class="infos flex flex-col gap-3">
+                                <h3>
+                                    Смартфон Honor X9b 5G
+                                    12/256GB Полночный…
+                                </h3>
+                                <div class="flex justify-between">
+                                    <p class="text-[lightgray]">4 599 000 сум</p>
+                                    <span class="text-[crimson]">9%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <p class="text-[dodgerblue]">4 599 000 сум</p>
+                                    <span class="text-[dodgerblue]">5</span>
+                                </div>
+                                <button class="py-3 rounded-xl bg-[dodgerblue] text-white">10.01.2025</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>   
+            </div>
+        </section>
+
+
+        <section>
+            <div class="w-[95%] m-auto py-[30px]">
+                 <!--HTML CODE-->
+                <div class="w-full relative">
+                    <div class="swiper centered-slide-carousel swiper-container relative ">
+                    <div class="swiper-wrapper w-full flex justify-between">
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="../assets/images/Picture1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="../assets/images/Picture1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="../assets/images/Picture1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="../assets/images/Picture1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="../assets/images/Picture1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="../assets/images/Picture1.png" alt="">
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+
+
+        <section class="api grid grid-cols-4 gap-[20px] py-[50px] w-[95%] m-auto">
+
+        </section>
+
+
+
+
+    </main>
+
+
+
+
     
+    
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+    var swiper = new Swiper(".centered-slide-carousel", {
+     centeredSlides: true,
+     paginationClickable: true,
+     loop: true,
+     spaceBetween: 30,
+     slideToClickedSlide: true,
+     pagination: {
+       el: ".centered-slide-carousel .swiper-pagination",
+       clickable: true,
+     },
+     autoplay: {
+        delay: 1200,
+        disableOnInteraction: false,
+      },
+     breakpoints: {
+       1920: {
+         slidesPerView: 4,
+         spaceBetween: 30
+       },
+       1028: {
+         slidesPerView: 4,
+         spaceBetween: 10
+       },
+       990: {
+         slidesPerView: 4,
+         spaceBetween: 0
+       }
+     }
+    });
+    </script>
+    <script>
+        var swiper = new Swiper(".multiple-slide-carousel", {
+          loop: true,
+          slidesPerView: 3,
+          spaceBetween: 20,
+          navigation: {
+            nextEl: ".multiple-slide-carousel .swiper-button-next",
+            prevEl: ".multiple-slide-carousel .swiper-button-prev",
+          },
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+          breakpoints: {
+           1920: {
+               slidesPerView: 6,
+               spaceBetween: 30
+           },
+           1028: {
+               slidesPerView: 6,
+               spaceBetween: 30
+           },
+           990: {
+               slidesPerView: 1,
+               spaceBetween: 0
+           }
+         }
+        });
+       </script>
 </body>
 </html>
