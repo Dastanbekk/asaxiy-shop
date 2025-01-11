@@ -1,177 +1,183 @@
-const form = document.querySelector("form");
-const inputId = document.querySelector("#inputId");
-const adminCards = document.querySelector("#adminCards");
-const apiURL = "https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products";
-
-// Formni yuborilganda ishlash
-form.addEventListener("submit", async (event) => {
-  event.preventDefault(); // Formni qayta yuklashni oldini olish
-
-  let id = inputId.value.trim(); // Inputdan qiymat olish
-  id = Number(id); // ID ni son (number) formatiga o'tkazish
-
-  if (!id || isNaN(id)) {
-    alert("Iltimos, ID kiriting (raqam bo'lishi kerak)!");
-    return;
-  }
-
-  try {
-    // API orqali IDga tegishli ma'lumotni olish
-    const response = await fetch(`${apiURL}/${id}`);
-
-    if (!response.ok) {
-      throw new Error("IDga tegishli ma'lumot topilmadi!");
-    }
-
-    const data = await response.json();
-    displayCard(data); // Ma'lumotni ko'rsatish
-  } catch (error) {
-    console.error("Xatolik:", error.message);
-    alert(error.message);
-  }
-});
-
-// Ma'lumotni ko'rsatish funksiyasi
-function displayCard(data) {
-  adminCards.innerHTML = `
-    <div class="p-[20px] border rounded-lg shadow-md">
-      <img src="${data.img}" alt="Mahsulot rasmi" class="w-[100px] h-[100px] m-auto rounded-md">
-      <h2 class="text-lg font-bold text-center mt-2">${data.title}</h2>
-      <p class="text-center text-gray-600">${data.price.toLocaleString()} so'm</p>
-      <div class="flex justify-between mt-4">
-        <button id="editBtn" class="bg-[dodgerblue] text-white px-[20px] py-[10px] rounded-md">O'zgartirish</button>
-        <button id="deleteBtn" class="bg-[crimson] text-white px-[20px] py-[10px] rounded-md">O'chirish</button>
-      </div>
-    </div>
-  `;
-
-  // O'zgartirish va o'chirish tugmalariga event listener qo'shish
-  document.querySelector("#editBtn").addEventListener("click", () => editProduct(data));
-  document.querySelector("#deleteBtn").addEventListener("click", () => deleteProduct(data.id));
-}
-
-// Mahsulotni o'zgartirish funksiyasi
-function editProduct(product) {
-  const newTitle = prompt("Yangi mahsulot nomini kiriting:", product.title);
-  if (!newTitle) return;
-
-  const updatedProduct = { ...product, title: newTitle };
-
-  fetch(`${apiURL}/${product.id}`, {
-    method: "PUT", // PUT metodi o'zgartirish uchun
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedProduct),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Ma'lumotni o'zgartirishda xatolik yuz berdi!");
-      }
-      return response.json();
-    })
-    .then((updatedData) => {
-      alert("Ma'lumot muvaffaqiyatli o'zgartirildi!");
-      displayCard(updatedData); // Yangilangan ma'lumotni ko'rsatish
-    })
-    .catch((error) => {
-      console.error("Xatolik:", error.message);
-      alert(error.message);
-    });
-}
-
-// Mahsulotni o'chirish funksiyasi
-function deleteProduct(id) {
-  if (!confirm("Haqiqatan ham ushbu mahsulotni o'chirmoqchimisiz?")) return;
-
-  fetch(`${apiURL}/${id}`, {
-    method: "DELETE", // DELETE metodi o'chirish uchun
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Ma'lumotni o'chirishda xatolik yuz berdi!");
-      }
-      alert("Mahsulot muvaffaqiyatli o'chirildi!");
-      adminCards.innerHTML = ""; // Ma'lumotlarni tozalash
-    })
-    .catch((error) => {
-      console.error("Xatolik:", error.message);
-      alert(error.message);
-    });
-}
-
-// Yangi mahsulot qo'shish funksiyasi
-function addProduct() {
-  const title = prompt("Mahsulot nomini kiriting:");
-  const price = Number(prompt("Mahsulot narxini kiriting (so'm):"));
-  const img = prompt("Mahsulot rasmi uchun URL kiriting:");
-
-  if (!title || !price || !img) {
-    alert("Barcha maydonlarni to'ldiring!");
-    return;
-  }
-
-  const newProduct = { title, price, img };
-
-  fetch(apiURL, {
-    method: "POST", // POST metodi qo'shish uchun
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newProduct),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Yangi mahsulotni qo'shishda xatolik yuz berdi!");
-      }
-      return response.json();
-    })
-    .then((addedProduct) => {
-      alert("Yangi mahsulot muvaffaqiyatli qo'shildi!");
-      console.log("Qo'shilgan mahsulot:", addedProduct);
-    })
-    .catch((error) => {
-      console.error("Xatolik:", error.message);
-      alert(error.message);
-    });
-}
-
-// Qo'shish tugmasiga event listener qo'shish (agar kerak bo'lsa)
-document.querySelector(".addProductBtn")?.addEventListener("click", addProduct);
-
-
-
-// let formFile = document.querySelector("#formFile")
-// let imgs = document.querySelector(".imgs")
-// fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products").then((data)=>data.json()).then((res)=>getData(res))
-
-// function getData(data){
-//     data.forEach((value) => {
-//         let img = document.createElement("img");
-//         img.src = value.img;
-//         imgs.append(img);
-//     });
+// if (!localStorage.getItem("user")) {
+//   window.location.href = "../src/login.html";
 // }
 
-// formFile.addEventListener("submit",(e)=>{
-//     e.preventDefault()
+import { useFetch } from "./utils/index.js";
+import { addUIData } from "./utils/ui.js";
+const post_product = document.getElementById("post_product");
+let getId = document.getElementById("getId");
+let btns = document.querySelectorAll(".btn");
+let addForm = document.querySelector(".add");
+let deleteForm = document.querySelector(".delete");
+let editForm = document.querySelector(".edit");
+let carts = document.querySelector(".carts");
+let deleteBtn = document.querySelector(".delete-btn");
+let id = localStorage.getItem("id") || "add";
+let users = JSON.parse(localStorage.getItem("user"));
+const request = useFetch();
 
-//     let img = formFile.img.files[0];
-//     let baseImg = "";
+// header
+
+// let name = document.querySelector(".name");
+// let signOut = document.querySelector(".sign-out");
+// name.innerHTML = users.username;
+// signOut.addEventListener("click", () => {
+//   localStorage.removeItem("user");
+//   window.location.href = "../src/index.html";
+// });
+
+// header
+
+btns.forEach((value) => {
+  value.addEventListener("click", (e) => {
+    localStorage.setItem("id", e.target.id);
+    editUi(e.target.id);
+  });
+});
+
+function editUi(id) {
+  switch (id) {
+    case "add":
+      addForm.style.display = "block";
+      deleteForm.style.display = "none";
+      editForm.style.display = "none";
+      break;
+    case "delete":
+      addForm.style.display = "none";
+      deleteForm.style.display = "block";
+      editForm.style.display = "none";
+      break;
+
+    default:
+      addForm.style.display = "none";
+      deleteForm.style.display = "none";
+      editForm.style.display = "block";
+      break;
+  }
+}
 
 
-//     let reader = new FileReader();
-//     reader.onload = function(e){
-//         baseImg = e.target.result;
-//         fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products",{
-//             method:"POST",
-//             headers:{
-//                 "Content-Type":"application/json",
-//             },
-//             body: JSON.stringify({
-//                 ID:17,
-//                 text:"text 1",
-//                 img:baseImg,
-//             }),
-//         })
-//         .then((data)=>data.json())
-//         .then((res)=>{alert("Malumot qoshildi")})
-//     };
-//     reader.readAsDataURL(img)
-// })
+post_product.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log(post_product.img_file.files[0].type);
+
+  let imgUrl = "";
+  if (
+    post_product.img_file.files[0].type !== "image/png" &&
+    post_product.img_file.files[0].type !== "image/webp"
+  ) {
+    return alert("Iltimos png krting");
+  }
+  const fileReader = new FileReader();
+  fileReader.onload = function (event) {
+    imgUrl = event.target.result;
+
+    let newData = {
+      img: imgUrl,
+      title: post_product.title.value,
+      price: +post_product.price.value,
+      month: +post_product.month.value,
+      rate: +post_product.rate.value,
+    };
+    postData(newData);
+  };
+  fileReader.readAsDataURL(post_product.img_file.files[0]);
+});
+
+function postData(data) {
+  request({ url: "products", method: "POST", data }).then(() =>
+    alert("Mahsulot qoshildi")
+  );
+}
+editUi(id);
+
+// Delete start
+
+deleteBtn.style.display = "none";
+getId.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let id = getId.id.value;
+  getOneProduct(id);
+  carts.innerHTML = "";
+});
+
+function getOneProduct(id) {
+  try {
+    request({ url: `products/${id}` }).then((data) => {
+      deleteBtn.style.display = "block";
+      deleteProductItem(data);
+    });
+  } catch (error) {}
+}
+
+function deleteProductItem(data) {
+  addUIData(data, carts);
+  deleteBtn.addEventListener("click", () => {
+    deleteProduct(data.id);
+    data = [];
+  });
+}
+function deleteProduct(id) {
+  let sucsses = confirm("Ochirishingizga ishonchingiz komilmi ?");
+  if (sucsses) {
+    request({ url: `products/${id}`, method: "DELETE" }).then(() => {
+      alert("Malumot ochirildi !");
+      carts.innerHTML = "";
+      deleteBtn.style.display = "none";
+    });
+  } else {
+    alert("Malumot saqlanib qoldi !");
+    carts.innerHTML = "";
+    deleteBtn.style.display = "none";
+  }
+}
+
+// Edit start
+let post_product_edit = document.getElementById("post_product_edit");
+let carts2 = document.querySelector(".carts2");
+let getIdEdit = document.getElementById("getIdEdit");
+
+getIdEdit.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let id = getIdEdit.id.value;
+  getOneProduct2(id);
+  carts.innerHTML = "";
+});
+function getOneProduct2(id) {
+  try {
+    request({ url: `products/${id}` }).then((data) => {
+      addUIData(data, carts2);
+      post_product_edit.style.display = "flex";
+      post_product_edit.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let imgUrl = "";
+        if (
+          post_product_edit.img_file_edit.files[0].type !== "image/png" &&
+          post_product_edit.img_file_edit.files[0].type !== "image/webp"
+        ) {
+          return alert("Iltimos png krting");
+        }
+        const fileReader = new FileReader();
+        fileReader.onload = function (event) {
+          imgUrl = event.target.result;
+
+          let newData = {
+            img: imgUrl,
+            title: post_product_edit.title_edit.value,
+            price: +post_product_edit.price_edit.value,
+            month: +post_product_edit.month_edit.value,
+            rate: +post_product_edit.rate_edit.value,
+          };
+          editProduct(data.id, newData);
+        };
+        fileReader.readAsDataURL(post_product_edit.img_file_edit.files[0]);
+      });
+    });
+  } catch (error) {}
+}
+
+function editProduct(id, newData) {
+  request({ url: `products/${id}`, method: "PUT", data: newData }).then(() =>
+    alert("Mahsulot ozgartrildi")
+  );
+}

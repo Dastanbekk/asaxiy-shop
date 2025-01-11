@@ -34,9 +34,10 @@ fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products")
           </div>
           <div class="flex justify-between gap-[10px] py-[10px]">
             <button class="text-white rounded-lg w-[80%] bg-[dodgerblue]">Купить в один клик</button>
-                <button class="add-to-cart-btn" data-product='${JSON.stringify(item)}'>
-                 Savatchaga qo'shish
-            </button>
+                
+                  <button class="add-to-cart-btn btn_shop p-[10px] w-[20%] rounded-lg bg-[#00BFAF]"  data-product='${JSON.stringify(item)}'  >
+                    <i class="bx bx-shopping-bag text-2xl text-white"></i>
+                  </button>
           </div>
           <!-- Like tugmasi -->
           <button class="like-btn absolute top-[15px] left-[15px] flex items-center gap-2 mt-2 px-4 py-2 bg-red-500 text-white rounded-lg" data-id="${item.id}">
@@ -224,6 +225,47 @@ function likeProduct(id, data) {
     }
   }
 
+// const user = document.getElementById("user")
+// const username = document.getElementById("username")
+// const email = document.getElementById("email").value
+// const password = document.getElementById("password").value
+// const wrapper_home = document.getElementById("wrapper-home")
+// const newUser = document.getElementById("newUser")
+// const wrapper_user = document.getElementById("wrapper_user")
+
+
+// wrapper_user.style.display="none"
+// user.addEventListener("click",()=>{
+//     wrapper_user.style.display = "block";
+//     wrapper_home.style.display = "none"
+// })
+// fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/users")
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error('Network response was not ok');
+//     }
+//     return response.json();
+//   })
+//   .then(data => {
+//     data.forEach(item => {
+      
+//       if(email===item.email && password===item.password){
+
+//         let newUserName = document.createElement("div")
+
+
+//         newUserName.innerHTML = `
+//           <p>${item.username}</p>
+//         `;
+//         newUser.append(newUserName)
+//         wrapper_user.style.display='none';
+//       }else{
+//         // wrapper_home.style.display='none'
+        
+//       }
+//     });
+//   })
+//   .catch(error => console.error('Error:', error));
 
 
 

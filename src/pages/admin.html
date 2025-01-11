@@ -11,44 +11,160 @@
     <link rel="stylesheet" href="../../dist/css/output.css">
 </head>
 <body>
-    <div class="grid grid-cols-[30%_minmax(70%,_2fr)] w-[95%] m-auto h-[100vh]">
-        <div class="bg-[yellow] p-[20px] px-[40px]">
+    <div class="grid grid-cols-1 md:grid-cols-[30%_minmax(70%,_1fr)] w-[95%] m-auto h-[100vh]">
+        <div class="p-[20px] px-[40px]">
             <div class="flex  items-center justify-between">
                 <a href="../index.html"><img src="../../assets/svg/logo.svg" alt="logo"></a>
                 <a href="../index.html"><i class='bx bx-log-out text-[25px]'></i></a>
             </div>
-
-            <div class="mt-10">
-                <ul class="flex flex-col gap-[30px] text-2xl  ">
-                    <li class="hover:bg-[#c4c421] py-[10px] px-[15px]">
-                        <a href="#"  class="font-bold "> O'zgartirish</a>
-                    </li>
-                    <li class="hover:bg-[#c4c421] py-[10px] px-[15px]">
-                        <a href="#" class="font-bold">O'chirish</a>
-                    </li>
-                    <li class="hover:bg-[#c4c421] py-[10px] px-[15px]">
-                        <a href="#" class="font-bold">Qoshish</a>
-                    </li>
-                </ul>
+            <div class="flex justify-center flex-col gap-5 mt-[50px] flex-wrap">
+                <button id="add" class="bg-[#60bd60] text-white py-[10px] btn rounded-lg">Qoshish</button>
+                <button id="edit" class="bg-[#ffcc14] text-white py-[10px] btn rounded-lg">O'zgartirish</button>
+                <button id="delete" class="bg-[crimson] text-white py-[10px] btn  rounded-lg">O'chirish</button>
             </div>
-        </div>
-        <div class="bg-[crimson] py-10">
-            <form action="" class=" flex flex-col m-auto  w-[30%] py-[30px]">
-                <input type="text" id="inputId" class=" py-[12px] px-[10px] rounded-t-xl" placeholder="id kiriting ">
-                <button class="bg-[dodgerblue] text-white py-[12px] rounded-b-xl">Ok</button>
-            </form>
-            <div class="flex justify-center">
-                <div id="adminCards" class="flex flex-col bg-white">
+            
 
+        </div>
+        <div class=" py-[0px] md:py-10 md:border-l-2 md:border-black">
+            <div class="add my-[0px] w-[100%] md:w-[50%] m-auto flex flex-col gap-[10px] md:my-[40px]">
+                <h1 class="text-2xl text-[#000] text-center">Mahsulot Qoshish</h1>
+                <form id="post_product" action="" class="flex flex-col gap-[10px]">
+                    <input
+                    required
+                    class="block w-full text-sm text-gray-900 border border-gray-300  rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                    id="img_file"
+                    type="file"
+                  />
+                  <input 
+                  required
+                  type="text"
+                  class="block w-full text-sm text-gray-900 border border-gray-300 p-[8px] rounded-lg cursor-pointer  focus:outline-none"
+                  type="text"
+                  id="title"
+                  placeholder="Mahsulot nomi"
+                  >
+                  <input 
+                  required
+                  type="text"
+                  class="block w-full text-sm text-gray-900 border border-gray-300 p-[8px] rounded-lg cursor-pointer  focus:outline-none"
+                  type="number"
+                  id="price"
+                  placeholder="Mahsulot narxi"
+                  >
+                  <input 
+                  required
+                  type="text"
+                  class="block w-full text-sm text-gray-900 border border-gray-300 p-[8px] rounded-lg cursor-pointer  focus:outline-none"
+                  type="number"
+                  id="month"
+                  placeholder="Mahsulot narxi oyiga"
+                  >
+                  <input 
+                  required
+                  type="text"
+                  class="block w-full text-sm text-gray-900 border border-gray-300 p-[8px] rounded-lg cursor-pointer  focus:outline-none"
+                  type="number"
+                  id="rate"
+                  placeholder="Mahsulot narxi oyiga"
+                  >
+                  <button class="p-[8px] bg-[dodgerblue] text-white rounded-lg">Submit</button>
+                  </form>
+
+            </div>
+            <div class="delete w-[50%] m-auto">
+                <div>
+                  <form class="flex flex-col" id="getId">
+                    <input
+                      required
+                      class="peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-non border my-4"
+                      type="number"
+                      placeholder="Mahsulot Id raqami"
+                      id="id"
+                    />
+                    <button
+                      type="submit"
+                      class="text-white bg-blue-700 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center w-full"
+                    >
+                      Get one product
+                    </button>
+                  </form>
+                  <div class="carts max-w-[300px] w-[100%] m-auto pt-4"></div>
+                  <button
+                    class="text-white bg-red-700 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center w-full delete-btn"
+                  >
+                    Delete
+                  </button>
                 </div>
             </div>
-
+             <div class="edit w-[50%] m-auto">
+                <div>
+                  <form class="flex flex-col" id="getIdEdit">
+                    <input
+                      required
+                      class="peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-non border my-4"
+                      type="number"
+                      placeholder="Mahsulot Id raqami"
+                      id="id"
+                    />
+                    <button
+                      type="submit"
+                      class="text-white bg-blue-700 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center w-full"
+                    >
+                      Get one product
+                    </button>
+                  </form>
+                  <div class="carts2 w-[50%] m-auto pt-4"></div>
+                  <form id="post_product_edit" action="" class="flex-col hidden">
+                    <input
+                      required
+                      class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                      id="img_file_edit"
+                      type="file"
+                    />
+          
+                    <input
+                      required
+                      class="peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-non border my-4"
+                      type="text"
+                      placeholder="Mahsulot nomi"
+                      id="title_edit"
+                    />
+                    <input
+                      required
+                      class="peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-non border my-4"
+                      type="number"
+                      placeholder="Mahsulot narxi"
+                      id="price_edit"
+                    />
+                    <input
+                      required
+                      class="peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-non border my-4"
+                      type="number"
+                      placeholder="Mahsulot oyiga narxi"
+                      id="month_edit"
+                    />
+                    <input
+                      required
+                      class="peer block min-h-[auto] w-full rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-non border my-4"
+                      type="number"
+                      placeholder="Raiting"
+                      id="rate_edit"
+                    />
+                    <button
+                      type="submit"
+                      class="text-white bg-blue-700 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center w-full"
+                    >
+                      Submit
+                    </button>
+                  </form>
+                </div>
+            </div>
         </div>
     </div>
 
 
 
 
-    <script type="module" src="../../js/main.js"></script>
+    <script type="module" src="../../js/admin.js"></script>
 </body>
 </html>
