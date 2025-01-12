@@ -1,6 +1,6 @@
-// if (!localStorage.getItem("user")) {
-//   window.location.href = "../src/login.html";
-// }
+if (!localStorage.getItem("user")) {
+  window.location.href = "../src/pages/admin.html";
+}
 
 import { useFetch } from "./utils/index.js";
 import { addUIData } from "./utils/ui.js";

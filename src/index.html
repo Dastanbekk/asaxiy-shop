@@ -48,7 +48,7 @@
                         <p>Корзина</p>
                     </div>
                 </a>
-                <a href="../src/pages/admin.html">
+                <a href="./pages/like.html">
                     <div class="flex flex-col items-center text-[20px]">
                         <img src="../assets/svg/heart.svg"       alt="">
                         <p>Избранное</p>
@@ -59,11 +59,13 @@
                     <p>O'zbekcha</p>
                 </div>
                 <button id="user">
-                    <div class="flex flex-col items-center text-[20px]">
-                        <img src="../assets/svg/user.svg"    alt="">
-                        <p>Войти</p>
-                        <p id="newUser"></p>
-                    </div>
+                    <a href="./pages/login.html">
+                        <div class="flex flex-col items-center text-[20px]">
+                            <img src="../assets/svg/user.svg"    alt="">
+                            <p>Войти</p>
+                            <p id="newUser"></p>
+                        </div>
+                    </a>
                 </button>
             </div>
             <div class="w-[90%] m-auto">
@@ -300,8 +302,52 @@
                         </div>
                 </div>
             </section>
-            <section class="api grid grid-cols-4 gap-[20px] py-[50px] w-[95%] m-auto">
+            <section class="api grid grid-cols-5 gap-[20px] py-[50px] w-[95%] m-auto">
             </section>
+
+            <section class="first  py-[40px] px-[20px] w-[95%] m-auto">
+                <div class="flex justify-between mb-[20px]">
+                    <h3 class="text-2xl font-bold">Известные бренды</h3>
+                    <a href="#" class="text-[dodgerblue]">Все бренды</a>
+                </div>
+                <div>
+                       <!--HTML CODE-->
+                    <div class="w-full relative">
+                        <div class="swiper multiple-slide-carousel swiper-container relative">
+                        <div class="swiper-wrapper flex items-center ">
+                        <div class="swiper-slide bg-white px-[50px] py-[20px]">
+                            <img src="../assets/logos/apple.png" class="w-full bg-white" alt="">
+
+                        </div>
+                        <div class="swiper-slide bg-white px-[50px] py-[20px]">
+                            <img src="../assets/logos/lenovo.png" class="w-full" alt="">
+
+                        </div>
+                        <div class="swiper-slide bg-white px-[50px] py-[20px]">
+                            <img src="../assets/logos/mi.png" class="w-full" alt="">
+
+                        </div>
+                        <div class="swiper-slide bg-white px-[50px] py-[20px]">
+                            <img src="../assets/logos/lenovo.png" class="w-full" alt="">
+
+                        </div>
+                        <div class="swiper-slide bg-white px-[50px] py-[20px]">
+                            <img src="../assets/logos/mi.png" class="w-full" alt="">
+
+                        </div>
+                        <div class="swiper-slide bg-white px-[50px] py-[20px]">
+                            <img src="../assets/logos/lenovo.png" class="w-full" alt="">
+
+                        </div>
+                        <div class="swiper-slide bg-white px-[50px] py-[20px]">
+                           <img src="../assets/logos/acer.png" class="w-full" alt="">
+                        </div>
+                    </div>
+                </div>
+                </div>   
+                </div>
+            </section>
+
         </main>
     
     </div>
@@ -310,7 +356,7 @@
 
     
     
-    <script src="../js/main.js"></script>
+    <script type="module" src="../js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
     var swiper = new Swiper(".centered-slide-carousel", {

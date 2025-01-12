@@ -13,7 +13,7 @@ fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products")
       card.classList.add("apiCard");
       
       card.innerHTML = `
-            <div class="relative w-[100%] flex flex-col justify-between">
+            <div class="relative max-w-[350px] w-[100%] flex flex-col justify-between">
                       <div class="flex justify-center">
           <img
             class="w-[100%]"
@@ -22,13 +22,13 @@ fetch("https://676afc4abc36a202bb83d19d.mockapi.io/api/v20/products")
           />
         </div>
         <div class="p-[15px]">
-          <h2 class="text-[14px]">${item.title?.slice(0, 40) + "..."}</h2>
+          <h2 class="text-[18px] font-bold">${item.title?.slice(0, 40) + "..."}</h2>
           <p><i class="bx bxs-star text-[gold]"></i> ${item.rate}</p>
           <h3>${item.month
             ?.toLocaleString("uz-UZ")
             .replace(/,/g, " ")} so'm/oyiga</h3>
           <div class="flex items-center justify-between">
-            <h2>${item.price
+            <h2 class="text-[crimson] font-bold">${item.price
               ?.toLocaleString("uz-UZ")
               .replace(/,/g, " ")} so'm</h2>
           </div>
